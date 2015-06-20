@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  Name: <%= f.text_field :name %> <br />
+  Day: <%= select_date Date.today %> <br />
+  Picture url: <%= f.text_field :pictureurl %> 
+
   <div class="actions">
     <%= f.submit %>
   </div>

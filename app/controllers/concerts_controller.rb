@@ -4,8 +4,12 @@ class ConcertsController < ApplicationController
   # GET /concerts
   # GET /concerts.json
   def index
-    @concerts = Concert.all
-    system('say welcome on board')
+    if current_user
+      @concerts = Concert.all
+      system('say woah!')
+    else
+      render 'unauthorized'
+    end
   end
 
   # GET /concerts/1
@@ -25,7 +29,12 @@ class ConcertsController < ApplicationController
   # POST /concerts
   # POST /concerts.json
   def create
-    @concert = Concert.new(concert_params)
+    @concert = Concert.new
+    @concert.name = concert_params[:name]
+    @concert.pictureurl = concert_params[:pictureurl]
+
+    dateHash = params[:date]
+    @concert.day = DateTime.new(dateHash[:year].to_i, dateHash[:month].to_i, dateHash[:day].to_i)
 
     respond_to do |format|
       if @concert.save
