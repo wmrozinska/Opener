@@ -1,5 +1,13 @@
 <%= form_for :user, url: '/sessions/' do |f| %>
-Username: <%= f.text_field :user_name %> <br />
-Password: <%= f.password_field :password %> <br />
-<%= f.submit 'Log in' %>
+  <table>
+    <tr>
+      <td>Username:</td>
+      <td><%= f.text_field :user_name %></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+  </table>
+  <%= f.submit 'Log in' %>
 <% end %>
